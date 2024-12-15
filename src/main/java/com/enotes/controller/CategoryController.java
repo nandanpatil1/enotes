@@ -33,9 +33,9 @@ public class CategoryController {
 		Boolean save = categoryService.save(categorydto);
 
 		if (save) {
-			return new ResponseEntity<>("Category created successfully.", HttpStatus.CREATED);
+			return new ResponseEntity<>("Category created or updated successfully.", HttpStatus.CREATED);
 		} else {
-			return new ResponseEntity<>("Category Not Created.", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Category Not Created or Category with the provided ID does not exist for update.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

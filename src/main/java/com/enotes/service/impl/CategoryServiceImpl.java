@@ -38,7 +38,14 @@ public class CategoryServiceImpl implements CategoryService {
 			
 		}
 		else {
-			updateCategory(category);	
+			// Check if the category exists before updating
+	        Optional<Category> existingCategory = categoryRepo.findById(category.getId());
+	        if (existingCategory.isEmpty()) {
+	            return false;  // This will indicate the category doesn't exist
+	        }
+	        
+	        // Proceed with the update logic
+	        updateCategory(category);	
 		}
 		
 		Category savedCategory = categoryRepo.save(category);
